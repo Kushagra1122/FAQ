@@ -10,6 +10,8 @@ const Accordian = ({ data, index, toggled }) => {
     setclick(toggled[0] === index);
   }, [toggled[0]]);
 
+  console.log(toggled)
+
   return (
     <div>
       <div key={index}>
@@ -23,7 +25,9 @@ const Accordian = ({ data, index, toggled }) => {
                   </span>
                   <span
                     className="lg:text-3xl sm:text-xl text-white px-0.5"
-                    onClick={() => toggled[1](index)}
+                    onClick={() => {
+                      toggled[1](click ? null : index);
+                    }}
                   >
                     {click ? <IoIosArrowUp /> : <IoIosArrowDown />}
                   </span>
