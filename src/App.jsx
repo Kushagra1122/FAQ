@@ -5,7 +5,6 @@ import { useState } from "react";
 import Accordian from "./components/Accordian";
 
 function App() {
- 
   const datas = [
     {
       title: "What is Synkerr?",
@@ -40,6 +39,9 @@ function App() {
       ans: "Synkerr is available as a mobile app for both iOS and Android devices, enabling users to access the platform while on the move.",
     },
   ];
+
+  const toggled = useState(null);
+
   return (
     <div className="bg-black">
       <div className="flex flex-col justify-center items-center  h-max lg:gap-30 sm:gap-10 py-14 ">
@@ -54,7 +56,7 @@ function App() {
           <div className="xyz  ">
             <div className="flex flex-wrap justify-center gap-10 py-10">
               {datas.map((data, index) => (
-                <Accordian index={index} data={data}/>
+                <Accordian index={index} data={data} toggled={toggled} />
               ))}
             </div>
           </div>

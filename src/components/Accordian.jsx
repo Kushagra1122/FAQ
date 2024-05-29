@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
 import { useState } from "react";
-const Accordian = ({data,index}) => {
-     const [click, setclick] = useState(false);
-     
+const Accordian = ({ data, index, toggled }) => {
+  const [click, setclick] = useState(false);
+
+  useEffect(() => {
+    setclick(toggled[0] === index);
+  }, [toggled[0]]);
+
   return (
     <div>
       <div key={index}>
@@ -14,8 +18,13 @@ const Accordian = ({data,index}) => {
             <div className=" px-10 py-2">
               <div>
                 <div className="flex justify-between items-center  ">
-                  <span className="lg:text-xl sm:text-lg text-white ">{data.title}</span>
-                  <span className="lg:text-3xl sm:text-xl text-white px-0.5" onClick={()=>setclick(!click)}>
+                  <span className="lg:text-xl sm:text-lg text-white ">
+                    {data.title}
+                  </span>
+                  <span
+                    className="lg:text-3xl sm:text-xl text-white px-0.5"
+                    onClick={() => toggled[1](index)}
+                  >
                     {click ? <IoIosArrowUp /> : <IoIosArrowDown />}
                   </span>
                 </div>
@@ -35,6 +44,6 @@ const Accordian = ({data,index}) => {
       </div>
     </div>
   );
-}
+};
 
-export default Accordian
+export default Accordian;
